@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Chúc Mừng Sinh Nhật Anh Yêu 🎂💖 • 14/10</title>
+  <meta name="description" content="Thiệp slide sinh nhật lãng mạn kỷ niệm 6 năm bên nhau, chúc anh thành công trong sự nghiệp và mãi hạnh phúc">
+  
+  <!-- Google Fonts: Sang trọng & Lãng mạn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas hiệu ứng hạt, hoa bay, tim & pháo hoa -->
+  <canvas id="fxCanvas"></canvas>
+
+  <!-- Khung hiển thị giao diện Mobile App / Story -->
+  <main class="app-viewport" id="appViewport">
+    <!-- Notch / Dynamic Island khi hiển thị trên màn hình PC -->
+    <div class="phone-notch"></div>
+
+    <!-- Cánh hoa rơi nền nhẹ nhàng 100% CSS (không tốn CPU) -->
+    <div class="ambient-bg">
+      <div class="petal-particle petal-1"></div>
+      <div class="petal-particle petal-2"></div>
+      <div class="petal-particle petal-3"></div>
+      <div class="petal-particle petal-4"></div>
+      <div class="petal-particle petal-5"></div>
+    </div>
+
+    <!-- HEADER: Thanh tiến trình Story & Điều khiển -->
+    <header class="story-header">
+      <!-- 5 phân đoạn tiến trình như Instagram Story -->
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar-segment"><div class="progress-fill" id="fill-0"></div></div>
+        <div class="progress-bar-segment"><div class="progress-fill" id="fill-1"></div></div>
+        <div class="progress-bar-segment"><div class="progress-fill" id="fill-2"></div></div>
+        <div class="progress-bar-segment"><div class="progress-fill" id="fill-3"></div></div>
+        <div class="progress-bar-segment"><div class="progress-fill" id="fill-4"></div></div>
+      </div>
+
+      <div class="header-controls">
+        <div class="recipient-pill">
+          <img src="assets/avatar.jpg" alt="Avatar" class="header-avatar" id="headerAvatar">
+          <span class="recipient-name" id="headerRecipientName">Anh Yêu ❤️</span>
+        </div>
+
+        <div class="header-actions">
+          <!-- Nút bật/tắt nhạc -->
+          <button class="icon-btn" id="musicToggleBtn" title="Bật/Tắt nhạc nền" aria-label="Bật tắt nhạc">
+            🎵
+          </button>
+          <!-- Nút sửa thông tin nhanh -->
+          <button class="icon-btn" id="configModalBtn" title="Chỉnh sửa thông tin thiệp" aria-label="Tùy biến">
+            ✏️
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- TOUCH NAVIGATION ZONES (Chạm 1/4 trái để lùi, chạm 1/4 phải để tiến) -->
+    <div class="touch-zone touch-left" id="touchPrevZone" title="Chạm để lùi slide"></div>
+    <div class="touch-zone touch-right" id="touchNextZone" title="Chạm để tiến slide"></div>
+
+    <!-- DANH SÁCH CÁC SLIDE NỘI DUNG -->
+    <div class="slides-wrapper" id="slidesWrapper">
+
+      <!-- ================= SLIDE 1: CHÀO MỪNG SINH NHẬT ================= -->
+      <section class="slide active" id="slide-0" data-index="0">
+        <span class="tagline-badge" id="s1Tagline">Happy Birthday To My Man • 14.10.1994</span>
+        
+        <div class="avatar-halo">
+          <span class="crown-badge">👑</span>
+          <img src="assets/avatar.jpg" alt="Người yêu" class="main-avatar" id="mainAvatar">
+        </div>
+
+        <h1 class="romantic-title" id="s1Title">Chúc Mừng Sinh Nhật Anh Yêu!</h1>
+        <div class="romantic-script" id="s1Recipient">My Man 💖</div>
+        <p class="slide-desc" id="s1Subtitle">
+          Gửi anh, người đàn ông luôn yêu thương và đồng hành cùng em suốt những năm qua. Hôm nay là ngày đặc biệt của anh!
+        </p>
+      </section>
+
+      <!-- ================= SLIDE 2: KỶ NIỆM & ĐIỀU ANH YÊU ================= -->
+      <section class="slide" id="slide-1" data-index="1">
+        <span class="tagline-badge">6 Years Together</span>
+        
+        <!-- Khung ảnh Polaroid có thể chạm -->
+        <div class="polaroid-frame" id="polaroidCard" title="Chạm để bung tim">
+          <img src="assets/memory.jpg" alt="Kỷ niệm đẹp" class="polaroid-img" id="memoryImg">
+          <div class="polaroid-caption" id="memoryCaption">6 năm đồng hành — Hơn 2,190 ngày gắn bó ngọt ngào 📸</div>
+        </div>
+
+        <!-- 4 điều anh yêu ở em -->
+        <div class="reasons-grid" id="reasonsGrid">
+          <!-- Nội dung render động từ config.js -->
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 3: BÁNH KEM TƯƠNG TÁC & THỔI NẾN ================= -->
+      <section class="slide" id="slide-2" data-index="2">
+        <span class="tagline-badge">Make A Wish</span>
+        <h2 class="romantic-title" style="font-size: 26px;">Thổi Nến Và Ước</h2>
+
+        <!-- Bánh sinh nhật vẽ bằng SVG tinh tế -->
+        <div class="cake-container" id="cakeContainer">
+          <svg class="cake-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Gradient kem hồng -->
+              <linearGradient id="frostingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff9eb5" />
+                <stop offset="100%" stop-color="#ff758c" />
+              </linearGradient>
+              <linearGradient id="cakeBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff0f5" />
+                <stop offset="100%" stop-color="#fed6e3" />
+              </linearGradient>
+              <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#ff4757" />
+                <stop offset="40%" stop-color="#ffa502" />
+                <stop offset="90%" stop-color="#fff200" />
+              </linearGradient>
+            </defs>
+
+            <!-- Đĩa bánh -->
+            <ellipse cx="100" cy="180" rx="85" ry="14" fill="#f8e1e7" />
+            <ellipse cx="100" cy="177" rx="78" ry="11" fill="#ffffff" />
+
+            <!-- Tầng bánh dưới -->
+            <path d="M 35 130 C 35 155, 165 155, 165 130 L 165 165 C 165 185, 35 185, 35 165 Z" fill="url(#cakeBaseGrad)" />
+            <ellipse cx="100" cy="130" rx="65" ry="16" fill="url(#frostingGrad)" />
+
+            <!-- Lớp kem chảy tầng 1 -->
+            <path d="M 35 130 C 45 145, 55 135, 65 145 C 75 135, 85 147, 95 137 C 105 146, 115 138, 125 146 C 135 136, 145 147, 155 137 C 160 142, 165 130, 165 130 Z" fill="#ff758c" opacity="0.9" />
+
+            <!-- Tầng bánh trên -->
+            <path d="M 55 85 C 55 105, 145 105, 145 85 L 145 115 C 145 130, 55 130, 55 115 Z" fill="url(#cakeBaseGrad)" />
+            <ellipse cx="100" cy="85" rx="45" ry="13" fill="url(#frostingGrad)" />
+
+            <!-- Họa tiết dâu tây và hoa kem -->
+            <circle cx="80" cy="83" r="5" fill="#ff4757" />
+            <circle cx="100" cy="85" r="5" fill="#ff4757" />
+            <circle cx="120" cy="83" r="5" fill="#ff4757" />
+            <circle cx="90" cy="87" r="3" fill="#ffffff" />
+            <circle cx="110" cy="87" r="3" fill="#ffffff" />
+
+            <!-- Cây nến -->
+            <rect x="96" y="45" width="8" height="35" rx="3" fill="#ffffff" stroke="#ff758c" stroke-width="1.5" />
+            <!-- Tim nến -->
+            <line x1="100" y1="45" x2="100" y2="38" stroke="#57606f" stroke-width="1.5" />
+
+            <!-- Ngọn lửa nến (Flickering flame) -->
+            <g id="candleFlame" class="candle-flame">
+              <path d="M 100 16 C 92 28, 93 38, 100 39 C 107 38, 108 28, 100 16 Z" fill="url(#flameGrad)" />
+              <ellipse cx="100" cy="33" rx="3" ry="5" fill="#ffffff" opacity="0.8" />
+            </g>
+
+            <!-- Làn khói khi nến tắt -->
+            <g id="smokeGroup" class="smoke-particle">
+              <path d="M 100 38 Q 95 28, 103 20 Q 97 10, 100 2" stroke="#dfe4ea" stroke-width="3" fill="none" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Hộp hướng dẫn & lời chúc khi thổi xong -->
+        <div class="wish-message-box" id="wishMessageBox">
+          <p class="slide-desc" id="wishInstruction" style="margin-bottom: 0;">
+            Hãy nhắm mắt lại, thành tâm ước một điều ước thật đẹp rồi chạm vào ngọn nến để thổi nhé! ✨
+          </p>
+          <button class="action-btn-pill" id="blowCandleBtn">
+            <span>Thổi nến ở đây nè!</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 4: HỘP THƯ BÍ MẬT ================= -->
+      <section class="slide" id="slide-3" data-index="3">
+        <span class="tagline-badge">Special Secret Letter</span>
+        <h2 class="romantic-title" style="font-size: 26px;">Tâm Thư Gửi Anh</h2>
+        <p class="slide-desc">Có những lời từ tận đáy lòng mà em luôn muốn nhắn gửi riêng cho người đàn ông của em...</p>
+
+        <!-- Bìa phong thư phong cách sáp niêm phong -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope-flap" id="envelopeFlap"></div>
+          <div class="envelope-base">
+            <span style="font-size: 38px;">💌</span>
+          </div>
+          <div class="wax-seal" id="waxSeal">
+            ❤️
+          </div>
+        </div>
+
+        <button class="action-btn-pill" id="openLetterBtn" style="margin-top: 18px;">
+          <span>Mở tâm thư ở đây!</span>
+        </button>
+      </section>
+
+      <!-- ================= SLIDE 5: KẾT THÚC & PHIẾU ĐẶC QUYỀN ================= -->
+      <section class="slide" id="slide-4" data-index="4">
+        <span class="tagline-badge">Special Gift For You</span>
+        <h2 class="romantic-title" id="s5Title" style="font-size: 21px; margin-bottom: 4px;">Phiếu Đặc Quyền Tình Yêu 🎟️</h2>
+        <p class="slide-desc" id="s5Subtitle" style="margin-bottom: 6px; font-size: 13px;">
+          Món quà đặc biệt dành riêng cho anh Trung, có giá trị trọn đời!
+        </p>
+
+        <!-- Phiếu quà tặng đặc biệt (Love Coupon) -->
+        <div class="love-coupon" id="loveCouponCard" title="Chạm để đóng dấu nhận quà">
+          <div class="coupon-header">
+            <span class="coupon-badge">VIP SPECIAL PASS</span>
+            <span class="coupon-code">NO. 14101994-6Y</span>
+          </div>
+          <div class="coupon-body">
+            <div class="coupon-to">Người thụ hưởng: <strong>Nguyễn Minh Trung</strong></div>
+            <ul class="coupon-perks" id="couponPerks">
+              <li>✨ 1 ngày được em cưng chiều 100% không giới hạn</li>
+              <li>💋 Hun aiu mỗi ngày 100 cái</li>
+              <li>🥂 Một buổi hẹn hò thiệt là lãng mạn</li>
+            </ul>
+          </div>
+          <div class="coupon-footer">
+            <span class="coupon-expiry">Hạn dùng: Vô thời hạn (Mãi mãi) 💕</span>
+            <span class="coupon-action-hint" id="couponHint">Chạm để đóng dấu 💌</span>
+          </div>
+
+          <!-- Con dấu đóng lên khi bấm -->
+          <div class="coupon-stamp" id="couponStamp">
+            <div class="stamp-inner">
+              <span>ĐÃ NHẬN</span>
+              <small>VĨNH VIỄN</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="finale-buttons" style="margin-top: 8px;">
+          <button class="btn-romantic btn-replay" id="btnReplay">
+            <span>Xem lại từ đầu</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- THANH ĐIỀU HƯỚNG DƯỚI CÙNG -->
+    <footer class="bottom-controls">
+      <button class="nav-arrow-btn" id="prevSlideBtn">
+        ◀ Trước
+      </button>
+
+      <div class="swipe-hint">
+        <span>Chạm mép hoặc bấm nút</span> 👉
+      </div>
+
+      <button class="nav-arrow-btn" id="nextSlideBtn">
+        Tiếp ▶
+      </button>
+    </footer>
+
+    <!-- MÀN HÌNH CHÀO BAN ĐẦU: CHẠM ĐỂ MỞ THIỆP & KÍCH HOẠT NHẠC -->
+    <div class="intro-overlay" id="introOverlay">
+      <div class="intro-gift-box" id="introGiftBox">🎁</div>
+      <span class="tagline-badge">Món quà đặc biệt gửi đến anh ngày sinh nhật</span>
+      <h1 class="romantic-title" style="margin-top: 10px;" id="introTitle">Happy Birthday!</h1>
+      <p class="slide-desc" style="margin-bottom: 24px;">
+        Một tấm thiệp sinh nhật nhỏ dành tặng anh, người mà em yếu nhất.
+      </p>
+      <button class="intro-btn" id="startCardBtn">
+        <span>Chạm để mở thiệp</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- LÁ TÂM THƯ XUẤT HIỆN KHI MỞ PHONG BÌ -->
+  <div class="letter-sheet" id="letterSheet">
+    <div class="letter-content">
+      <div class="letter-header" id="letterTitle">Gửi người đàn ông em yêu nhất,</div>
+      <div class="letter-body" id="letterBody">
+        <!-- Render các đoạn văn thư tình -->
+      </div>
+      <div class="letter-signature" id="letterSignature">Love u my dear 💕</div>
+      <button class="letter-close-btn" id="closeLetterBtn">Gấp thư lại</button>
+    </div>
+  </div>
+
+  <!-- MODAL TÙY BIẾN NHANH DÀNH CHO NGƯỜI DÙNG -->
+  <div class="config-modal" id="configModal">
+    <div class="config-box">
+      <div class="config-title">
+        <span>✏️ Chỉnh sửa thông tin thiệp</span>
+      </div>
+
+      <div class="form-group">
+        <label for="cfgNickname">Biệt danh / Tên gọi anh yêu:</label>
+        <input type="text" id="cfgNickname" class="form-input" placeholder="Ví dụ: Anh Yêu, My Man, Chồng Yêu...">
+      </div>
+
+      <div class="form-group">
+        <label for="cfgFullname">Danh xưng / Họ tên (tùy chọn):</label>
+        <input type="text" id="cfgFullname" class="form-input" placeholder="Ví dụ: My Man">
+      </div>
+
+      <div class="form-group">
+        <label for="cfgGreeting">Lời chúc mở đầu (Slide 1):</label>
+        <textarea id="cfgGreeting" class="form-textarea" placeholder="Lời chúc ngọt ngào..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="cfgLetter">Nội dung bức thư tình (Slide 4):</label>
+        <textarea id="cfgLetter" class="form-textarea" style="min-height: 120px;" placeholder="Tâm sự chân thành của bạn..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="cfgSender">Ký tên người gửi:</label>
+        <input type="text" id="cfgSender" class="form-input" placeholder="Ví dụ: Em của anh, Người luôn bên anh...">
+      </div>
+
+      <div class="config-actions">
+        <button class="btn-cancel" id="cfgCancelBtn">Đóng</button>
+        <button class="btn-save" id="cfgSaveBtn">Lưu thay đổi ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="music.js"></script>
+  <script src="confetti.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
