@@ -67,9 +67,25 @@ Thiệp slide sinh nhật được thiết kế theo phong cách **Instagram / R
 
 ---
 
-## 📱 Cách gửi link thiệp qua điện thoại cho người yêu
+## 🌐 Cách đưa thiệp lên GitHub Web (GitHub Pages)
 
-- Bạn có thể đưa thư mục này lên các dịch vụ hosting miễn phí chỉ trong 1 phút như:
-  - **Vercel** hoặc **Netlify Drop** (kéo thả toàn bộ thư mục `happy-bd` vào trang [netlify.com/drop](https://app.netlify.com/drop) là có ngay đường link web xịn sò).
-  - Hoặc **GitHub Pages**.
-- Sau đó gửi đường link qua Zalo / Messenger cho bạn gái, khi mở trên điện thoại sẽ có trải nghiệm trọn vẹn nhất!
+### Cách 1: Sử dụng file tự động [Day_Len_Github.bat](file:///d:/happy-bd/Day_Len_Github.bat) (Khuyên dùng)
+1. Bạn vào [github.com/new](https://github.com/new) và tạo 1 repository mới:
+   - Tên repo: ví dụ `happy-birthday`
+   - Chọn chế độ: **Public**
+   - Bấm **Create repository**.
+2. Nhấp đúp vào file **[Day_Len_Github.bat](file:///d:/happy-bd/Day_Len_Github.bat)** trong thư mục.
+3. Nhập tên repo (ví dụ: `happy-birthday`) rồi ấn Enter. File sẽ tự động đẩy toàn bộ code lên GitHub.
+4. Vào mục **Settings > Pages** của repo trên GitHub, chọn Branch là **main** rồi bấm **Save**.
+5. Đường link thiệp của bạn sẽ là:
+   👉 **`https://joyen4624.github.io/happy-birthday/`**
+
+---
+
+### Cách 2: Chạy lệnh thủ công qua Terminal / PowerShell
+```bash
+git remote add origin https://github.com/joyen4624/happy-birthday.git
+git branch -M main
+git push -u origin main
+```
+Sau đó vào GitHub repo -> **Settings** -> **Pages** -> chọn branch **main** -> **Save**.
