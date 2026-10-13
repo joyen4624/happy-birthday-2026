@@ -49,8 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const loveCouponCard = document.getElementById("loveCouponCard");
   const couponStamp = document.getElementById("couponStamp");
   const couponHint = document.getElementById("couponHint");
+  const btnCaptureCoupon = document.getElementById("btnCaptureCoupon");
+  const cameraFlash = document.getElementById("cameraFlash");
+  const shareModal = document.getElementById("shareModal");
+  const sharePreviewImg = document.getElementById("sharePreviewImg");
+  const btnDownloadImage = document.getElementById("btnDownloadImage");
+  const btnNativeShare = document.getElementById("btnNativeShare");
+  const btnCloseShare = document.getElementById("btnCloseShare");
   const btnReplay = document.getElementById("btnReplay");
   let isCouponStamped = false;
+  let capturedFile = null;
 
   // Config Modal Elements
   const configModal = document.getElementById("configModal");
@@ -390,6 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
         isCouponStamped = true;
         if (couponStamp) couponStamp.classList.add("stamped");
         if (couponHint) couponHint.textContent = "Đã nhận đặc quyền ❤️";
+        if (btnCaptureCoupon) btnCaptureCoupon.style.display = "flex";
         
         if (window.soundController) {
           window.soundController.playSparkleChime();
@@ -406,6 +415,71 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Chức năng chụp màn hình minh chứng nhận đặc quyền
+  if (btnCaptureCoupon) {
+    btnCaptureCoupon.addEventListener("click", () => {
+      if (window.soundController) window.soundController.playCameraShutter();
+
+      // Hiệu ứng chớp nháy flash
+      if (cameraFlash) {
+        cameraFlash.classList.add("flash");
+        setTimeout(() => cameraFlash.classList.remove("flash"), 120);
+      }
+
+      // Chụp ảnh thẻ Love Coupon bằng html2canvas
+      if (window.html2canvas && loveCouponCard) {
+        window.html2canvas(loveCouponCard, {
+          scale: 3,
+          backgroundColor: "#ffffff",
+          useCORS: true,
+          logging: false
+        }).then(canvas => {
+          const dataUrl = canvas.toDataURL("image/png");
+          if (sharePreviewImg) sharePreviewImg.src = dataUrl;
+          if (btnDownloadImage) btnDownloadImage.href = dataUrl;
+
+          // Tạo blob để hỗ trợ Web Share API trực tiếp qua Messenger / Zalo
+          canvas.toBlob(blob => {
+            if (blob) {
+              capturedFile = new File([blob], "minh-chung-dac-quyen-anh-trung.png", { type: "image/png" });
+            }
+          }, "image/png");
+
+          if (shareModal) shareModal.classList.add("open");
+          if (window.particleSystem) window.particleSystem.burstHearts(20);
+        }).catch(err => {
+          console.error("Lỗi chụp ảnh minh chứng:", err);
+        });
+      }
+    });
+  }
+
+  // Chia sẻ trực tiếp qua Messenger / Zalo (Web Share API)
+  if (btnNativeShare) {
+    btnNativeShare.addEventListener("click", async () => {
+      if (navigator.share && capturedFile) {
+        try {
+          await navigator.share({
+            files: [capturedFile],
+            title: "Minh Chứng Đặc Quyền Tình Yêu",
+            text: "Em ơi, anh đã đóng dấu nhận đặc quyền sinh nhật rồi nè! Hạn dùng vĩnh viễn nha ❤️"
+          });
+        } catch (e) {
+          console.log("Chia sẻ đã hủy hoặc không hỗ trợ:", e);
+        }
+      } else {
+        // Tải ảnh về nếu trình duyệt không hỗ trợ share file
+        if (btnDownloadImage) btnDownloadImage.click();
+      }
+    });
+  }
+
+  if (btnCloseShare) {
+    btnCloseShare.addEventListener("click", () => {
+      if (shareModal) shareModal.classList.remove("open");
+    });
+  }
+
   btnReplay.addEventListener("click", () => {
     isCandleBlown = false;
     isCouponStamped = false;
@@ -413,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
     blowCandleBtn.style.display = "inline-flex";
     if (couponStamp) couponStamp.classList.remove("stamped");
     if (couponHint) couponHint.textContent = "Chạm để đóng dấu 💌";
+    if (btnCaptureCoupon) btnCaptureCoupon.style.display = "none";
     applyConfig();
     showSlide(0);
   });

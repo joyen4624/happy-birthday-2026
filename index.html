@@ -236,6 +236,10 @@
         </div>
 
         <div class="finale-buttons" style="margin-top: 8px;">
+          <!-- Nút chụp ảnh minh chứng (hiện ra sau khi đóng dấu) -->
+          <button class="btn-romantic btn-capture" id="btnCaptureCoupon" style="display: none;">
+            <span>📸 Chụp minh chứng gửi qua Messenger</span>
+          </button>
           <button class="btn-romantic btn-replay" id="btnReplay">
             <span>Xem lại từ đầu</span>
           </button>
@@ -325,7 +329,36 @@
     </div>
   </div>
 
+  <!-- HIỆU ỨNG CHỚP NHÁY CHỤP ẢNH (CAMERA FLASH) -->
+  <div class="camera-flash" id="cameraFlash"></div>
+
+  <!-- MODAL XEM & GỬI ẢNH MINH CHỨNG QUA MESSENGER -->
+  <div class="share-modal" id="shareModal">
+    <div class="share-box">
+      <div class="share-title">📸 Minh Chứng Nhận Đặc Quyền</div>
+      <div class="share-preview-container">
+        <img src="" id="sharePreviewImg" alt="Minh chứng đặc quyền">
+      </div>
+      <p class="share-instruction">
+        Đã chụp ảnh phiếu đặc quyền có con dấu <strong>ĐÃ NHẬN VĨNH VIỄN</strong>! Gửi ngay qua Messenger cho người yêu nhé ❤️
+      </p>
+      <div class="share-actions">
+        <button class="btn-romantic btn-share-native" id="btnNativeShare">
+          📤 Chia sẻ qua Messenger / Zalo
+        </button>
+        <a id="btnDownloadImage" class="btn-romantic btn-download" download="minh-chung-dac-quyen-anh-trung.png">
+          📥 Tải ảnh về máy
+        </a>
+        <a href="https://m.me/" target="_blank" class="btn-romantic btn-messenger" id="btnOpenMessenger">
+          💬 Mở ứng dụng Messenger
+        </a>
+        <button class="btn-close-share" id="btnCloseShare">Đóng</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
+  <script src="assets/html2canvas.min.js"></script>
   <script src="config.js"></script>
   <script src="music.js"></script>
   <script src="confetti.js"></script>

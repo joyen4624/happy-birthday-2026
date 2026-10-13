@@ -223,6 +223,43 @@ class SoundController {
     osc.start(now);
     osc.stop(now + 0.09);
   }
+
+  // Hiệu ứng tiếng chụp ảnh Camera Shutter
+  playCameraShutter() {
+    this.ensureContext();
+    if (!this.audioCtx) return;
+
+    const now = this.audioCtx.currentTime;
+    
+    // Tiếng click 1
+    const osc1 = this.audioCtx.createOscillator();
+    const gain1 = this.audioCtx.createGain();
+    osc1.frequency.setValueAtTime(800, now);
+    osc1.frequency.exponentialRampToValueAtTime(120, now + 0.04);
+    gain1.gain.setValueAtTime(0.2, now);
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+    osc1.connect(gain1);
+    gain1.connect(this.audioCtx.destination);
+    osc1.start(now);
+    osc1.stop(now + 0.05);
+
+    // Tiếng click 2
+    setTimeout(() => {
+      if (this.audioCtx) {
+        const t2 = this.audioCtx.currentTime;
+        const osc2 = this.audioCtx.createOscillator();
+        const gain2 = this.audioCtx.createGain();
+        osc2.frequency.setValueAtTime(1200, t2);
+        osc2.frequency.exponentialRampToValueAtTime(200, t2 + 0.06);
+        gain2.gain.setValueAtTime(0.25, t2);
+        gain2.gain.exponentialRampToValueAtTime(0.001, t2 + 0.06);
+        osc2.connect(gain2);
+        gain2.connect(this.audioCtx.destination);
+        osc2.start(t2);
+        osc2.stop(t2 + 0.07);
+      }
+    }, 60);
+  }
 }
 
 window.soundController = new SoundController();

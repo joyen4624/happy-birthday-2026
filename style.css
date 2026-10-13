@@ -840,6 +840,183 @@ html, body {
   border-color: var(--primary-pink);
 }
 
+.btn-romantic.btn-capture {
+  width: 100%;
+  background: linear-gradient(135deg, #ff477e, #ff70a6);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 71, 126, 0.35);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  animation: pulseButton 2s infinite ease-in-out;
+}
+
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); box-shadow: 0 6px 18px rgba(255, 71, 126, 0.5); }
+}
+
+.btn-romantic.btn-capture:active {
+  transform: scale(0.96);
+}
+
+/* Hiệu ứng chớp nháy chụp ảnh (Camera Flash) */
+.camera-flash {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity 0.25s ease;
+}
+
+.camera-flash.flash {
+  opacity: 0.95;
+  transition: none;
+}
+
+/* Modal xem và chia sẻ ảnh minh chứng qua Messenger */
+.share-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.share-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.share-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 350px;
+  max-height: 85vh;
+  border-radius: 20px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+.share-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary-deep);
+  margin-bottom: 6px;
+}
+
+.share-preview-container {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 10px auto;
+  border: 1.5px solid #ffccd5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  background: #fff8fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-preview-container img {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.share-instruction {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.share-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-romantic.btn-share-native {
+  width: 100%;
+  background: linear-gradient(135deg, #0084ff, #00c6ff);
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-romantic.btn-download {
+  width: 100%;
+  background: #fff0f5;
+  color: var(--primary-deep);
+  border: 1.5px solid var(--primary-pink);
+  padding: 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-romantic.btn-messenger {
+  width: 100%;
+  background: #0084ff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-close-share {
+  background: #f1f2f6;
+  color: #576574;
+  border: none;
+  padding: 9px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
 /* ==========================================================
    BOTTOM CONTROLS & NAVIGATION HINT
    ========================================================== */
